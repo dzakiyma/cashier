@@ -2,6 +2,11 @@ from tabulate import tabulate
 from datetime import datetime
 
 class Welcome:
+    """
+    This class have a main function, it's to create an instance
+    which will be processed in the child class later.
+    """
+    
     def start():
         '''
         In this method you will enter your name as first.
@@ -126,17 +131,17 @@ class Customer(Welcome):
         for i in range(0, len(self.items)):
             self.ordered_items.update({self.items[i] : self.num_of_items[i]})
        
-    def add_items(self):
+    def add_item(self):
         """
         Method for add some items, besides you have added in Welcome.start() at first.
         """
-        add_items = input("Enter the items you want to add\t: ")
+        new_item = input("Enter the items you want to add\t: ")
         menu_items = [keys for keys, value in Customer.menu_price.items()]
         
         #Check input are available in menu_items or not.
-        while add_items not in menu_items:
+        while new_item not in menu_items:
             print("Please only insert item which avaliable in menu.\n(Case Sensitive)")
-            add_items = input("Enter the items you want to add\t: ")
+            new_item = input("Enter the items you want to add\t: ")
             
         items_total = input("Enter the amount of the items\t: ")
         #Vaidate input must be in a number.
@@ -150,21 +155,21 @@ class Customer(Welcome):
                 print('Please insert the item amount in number.')
                 items_total = input('Insert the amount\t: ')
         
-        #Check whether added items already in order list or not.
-        if add_items in self.items:
-            i = self.items.index(add_items)
-            self.items[i] = add_items
+        #Check whether new item already in order list or not.
+        if new_item in self.items:
+            i = self.items.index(new_item)
+            self.items[i] = new_item
             self.num_of_items[i] = self.num_of_items[i] + items_total
             self.ordered_items.update({self.items[i] : self.num_of_items[i]})  
-        elif add_items not in self.items:   
-            self.items.append(add_items)
+        elif new_item not in self.items:   
+            self.items.append(new_item)
             self.num_of_items.append(items_total)
-            update_items = {add_items : items_total} #This dict used for update the ordered_items.
+            update_items = {new_item : items_total} #This dict used for update the ordered_items.
             self.ordered_items.update(update_items)
         
         add_confirmation = input("Do you want to add another items?\t(yes/no): ").lower()
         if add_confirmation == 'yes':
-            self.add_items()
+            self.add_item()
         elif add_confirmation == 'no':       
             self.calculate_bill()       
         else:
@@ -172,12 +177,12 @@ class Customer(Welcome):
                 print("Please insert only with 'yes' or 'no'.")
                 add_confirmation = input("Do you want to add another items?(yes/no)\t: ").lower()
                 if add_confirmation == 'yes':
-                    self.add_items()
+                    self.add_item()
                     break
             else:
                 self.calculate_bill()
             
-    def edit_items(self):
+    def edit_item(self):
         """
         This method have a function to edit your ordered items,
         By delete the item you want to first then offer an option,
@@ -202,10 +207,10 @@ class Customer(Welcome):
         edit_confirmation = input("Please insert the number of your choice?. (1/2/3/4)\t: ").lower()              
         while edit_confirmation != '1' or edit_confirmation != '2' or edit_confirmation != '3' or edit_confirmation != '4':    
             if edit_confirmation == '1':
-                self.add_items()
+                self.add_item()
                 break
             elif edit_confirmation == '2':
-                self.edit_items()
+                self.edit_item()
                 break
             elif edit_confirmation == '3':
                 self.cancel_order() 
@@ -309,10 +314,13 @@ class Customer(Welcome):
         while order_confirmation != 'yes' or order_confirmation != 'no':          
             if order_confirmation == 'yes':
                 print('-'*52)
-                print(f"Your order confirmed, Thankyou {self.name}!")
-                print(f"Order id\t: {self.id_transaksi}")
-                print(f"Total bill\t: Rp {int(total_bill)}")      
-                print(f"Please complete the payment and enjoy your foods!")
+                if int(total_bill) == 0:
+                    print("Thank you, Have a nice day!") 
+                else:
+                    print(f"Your order confirmed, Thankyou {self.name}!")
+                    print(f"Order id\t: {self.id_transaksi}")
+                    print(f"Total bill\t: Rp {int(total_bill)}")
+                    print(f"Please complete the payment and enjoy your foods!")
                 self.final_bill.append(int(total_bill))      
                 break  
             elif order_confirmation == 'no':
@@ -320,10 +328,10 @@ class Customer(Welcome):
                 print("1. Add items?\n2. Delete/Edit items?\n3. Cancel order?\n4. Finish order?")
                 question = input("Please insert the number of your choice. (1/2/3/4)\t: ")
                 if question == '1':
-                    self.add_items()
+                    self.add_item()
                     break
                 elif question == '2':
-                    self.edit_items()
+                    self.edit_item()
                     break
                 elif question == '3':
                     self.cancel_order()
@@ -331,6 +339,9 @@ class Customer(Welcome):
                 elif question == '4':
                     self.calculate_bill()
                     break     
+                else:
+                    question = input("Please insert the number of your choice. (1/2/3/4)\t: ")
+                    
             order_confirmation = input("Do you want to confirm this order? (yes/no)?\t: ")
                     
     def check_transaction_history():
