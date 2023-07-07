@@ -17,7 +17,7 @@ This project aims to make a cashier self-service program. Some of the initial fe
 * Calculate the total price
 * and Discount features
 
-But while making the program, I decided to develop it using a dictionary that stores data on product names and prices. So that the customer only needs to add the item name and the number of items, then the price will be automatically added. Because of that, I choose a cafe or restaurant to be used as an example for this program because there are fewer menus and prices that have to be made in the dictionary rather than supermarkets.
+But while making the program, I decided to develop it using a dictionary that stores the constant value of product names and prices. So that the customer only needs to add the item name and the number of items, then the price will be automatically added. Because of that, I choose a cafe or restaurant to be used as an example for this program because there are fewer menus and prices that have to be made in the dictionary rather than supermarkets.
 
 I built the program based on the customer journey. From that, I develop some features to accommodate the customer journey when want to order something.
 In short, this is the customer journey flow:
