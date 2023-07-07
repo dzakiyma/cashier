@@ -22,6 +22,12 @@ But while making the program, I decided to develop it using a database that stor
 I built the program based on the customer journey. From that, I develop some features to accommodate the customer journey when want to order something.
 In short, this is the customer journey flow:
 
-<img src="https://github.com/dzakiyma/cashier/assets/137891087/040ab8b3-5ddf-458a-be54-acc2cf22e894" width=500>
+<img src="https://github.com/dzakiyma/cashier/assets/137891087/040ab8b3-5ddf-458a-be54-acc2cf22e894" width=450>
 
 ## How it works
+* Download all files into one local directory.
+* Open initiate.py and run it.
+* The program will be starting and you just have to follow the instructions of the program.
+* In the program, have some features to control your input so that the Error will never be happen and the program can finish perfectly.
+
+## Test Case
