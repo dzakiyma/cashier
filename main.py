@@ -94,7 +94,7 @@ class Customer(Welcome):
         'Chicken Katsu' : 42_000,
         'Chicken Marsala' : 47_000,
         'Chicken Prame' : 40_000,
-        '~' : '',
+        '  ' : '',
         '-----Drinks-----' : '',
         'Lemon Tea' : 23_000,
         'Lychee Tea' : 24_000,
@@ -103,7 +103,7 @@ class Customer(Welcome):
         'Chocolate Cream' : 32_000,
         'Coffee' : 32_000,
         'Caramel Coffee' : 32_000,
-        '~' : '',
+        ' ' : '',
         '-----Snacks-----' : '',
         'Sushi Roll' : 27_000,
         'French Fries' : 25_000,
@@ -230,20 +230,16 @@ class Customer(Welcome):
             if self.transaction_data[i][0] == self.id_transaksi:
                 del self.transaction_data[i]   
         
-                
-        print(f"ID transaksi\t:  {self.id_transaksi}")
-        print(f"Nama Customer\t:  {self.name}")
-        
         #Delete value in customer attributes.
         self.items = ' '
         self.num_of_items = ' '
         self.id_transaksi = ' '
         self.ordered_items = {}
         
-        print('')
+        print('-'*52)
         print(f"Your order has been canceled.")
-        self.calculate_bill()
-        
+        print('')
+                
     def calculate_bill(self):
         """
         This method will calculate total bill of the order.
